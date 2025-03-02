@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COE420 Dice Roller</title>
+</head>
+
+<body>
+    <button id="roll-btn" type="button">Roll It</button>
+    <h1 id="roll-result"></h1>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            rollBtn = document.querySelector('#roll-btn');
+
+            rollBtn.addEventListener('click', () => {
+                let valuePlaceholder = document.querySelector('#roll-result');
+
+                fetch("https://coe420-dice-roller-csbebpfzf3fhb6dt.uaenorth-01.azurewebsites.net/")
+                    .then(response => response.json())
+                    .then(data => {
+                        valuePlaceholder.textContent = data.value;
+                    })
+                    .catch(err => console.error('error: ' + err));                
+            });
+
+        });
+    </script>
+</body>
+
+</html>
